@@ -3,7 +3,7 @@
 const CACHE_NAME = 'tyre-maintenance-form-cache-v1';
 const urlsToCache = [
   '/',
-  '/TyreForm.html',
+  '/TyreManagement/TyreForm.html',
   // Add paths to other static assets here
 ];
 
