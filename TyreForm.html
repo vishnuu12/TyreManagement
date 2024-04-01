@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tyre Maintenance Form</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="manifest" href="/manifest.json">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        margin-top: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #fff;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+        background-color: #007bff;
+        color: #fff;
+        border-bottom: none;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .card-body {
+        padding: 30px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="card-header text-center">
+        <h2>Tyre Maintenance Form</h2>
+    </div>
+    <div class="card-body">
+        <form id="tyreForm">
+            <div class="form-group">
+                <label for="tyreNo">Tyre Number:</label>
+                <input type="text" class="form-control" id="tyreNo" name="tyreNo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="whichTyre">Which Tyre:</label>
+                <select class="form-control" id="whichTyre" name="whichTyre" required>
+                    <option value="">Select Tyre</option>
+                    <option value="Front right">Front right</option>
+                    <option value="Front left">Front left</option>
+                    <option value="Back right inside">Back right inside</option>
+                    <option value="Back right outside">Back right outside</option>
+                    <option value="Back left inside">Back left inside</option>
+                    <option value="Back left outside">Back left outside</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fitInDate">Fit in Date:</label>
+                <input type="date" class="form-control" id="fitInDate" name="fitInDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fitInKM">Fit in KM:</label>
+                <input type="number" class="form-control" id="fitInKM" name="fitInKM" required>
+            </div>
+
+            <div class="form-group">
+                <label for="removeInDate">Remove in Date:</label>
+                <input type="date" class="form-control" id="removeInDate" name="removeInDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="removeInKM">Remove in KM:</label>
+                <input type="number" class="form-control" id="removeInKM" name="removeInKM" required>
+            </div>
+
+            <div class="form-group">
+                <label for="totalKM">Total KM:</label>
+                <input type="number" class="form-control" id="totalKM" name="totalKM" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Calculate Total KM</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('tyreForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Getting input values
+        var fitInKM = parseFloat(document.getElementById('fitInKM').value);
+        var removeInKM = parseFloat(document.getElementById('removeInKM').value);
+
+        // Calculating Total KM
+        var totalKM = removeInKM - fitInKM;
+
+        // Displaying Total KM
+        document.getElementById('totalKM').value = totalKM;
+    });
+	
+	
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered: ', registration);
+        })
+        .catch(error => {
+          console.log('Service Worker registration failed: ', error);
+        });
+    });
+  }
+</script>
+
+
+</body>
+</html>
