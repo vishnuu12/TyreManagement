@@ -1,7 +1,7 @@
 {
   "name": "Tyre Maintenance Form",
   "short_name": "Tyre Form",
-  "start_url": "/",
+  "start_url": "/TyreForm.html",
   "display": "standalone",
   "background_color": "#f8f9fa",
   "theme_color": "#007bff",
