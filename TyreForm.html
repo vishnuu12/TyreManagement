@@ -1,3 +1,49 @@
+/*
+<?php
+// Database configuration
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Prepare and bind SQL statement
+    $stmt = $conn->prepare("INSERT INTO tyre_maintenance (bus_number, tyre_number, which_tyre, fit_in_date, fit_in_km, remove_in_date, remove_in_km, total_km) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $bus_number, $tyre_number, $which_tyre, $fit_in_date, $fit_in_km, $remove_in_date, $remove_in_km, $total_km);
+
+    // Set parameters and execute
+    $bus_number = $_POST['busNo'];
+    $tyre_number = $_POST['tyreNo'];
+    $which_tyre = $_POST['whichTyre'];
+    $fit_in_date = $_POST['fitInDate'];
+    $fit_in_km = $_POST['fitInKM'];
+    $remove_in_date = $_POST['removeInDate'];
+    $remove_in_km = $_POST['removeInKM'];
+    $total_km = $_POST['totalKM'];
+
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    // Close statement
+    $stmt->close();
+}
+
+// Close connection
+$conn->close();
+?>
+*/
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +51,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tyre Maintenance Form</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="manifest" href="/TyreManagement/manifest.json">
+<link rel="manifest" href="/manifest.json">
 
 <style>
     body {
-        background-color: #f8f9fa;
+        background-color: #f3f3f3; /* Light gray background */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Common system font */
     }
     .card {
         margin-top: 50px;
@@ -22,7 +69,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .card-header {
-        background-color: #007bff;
+        background-color: #4CAF50; /* Green header */
         color: #fff;
         border-bottom: none;
         border-top-left-radius: 15px;
@@ -32,11 +79,11 @@
         padding: 30px;
     }
     .btn-primary {
-        background-color: #007bff;
+        background-color: #4CAF50; /* Green button */
         border: none;
     }
     .btn-primary:hover {
-        background-color: #0056b3;
+        background-color: #45a049; /* Darker green on hover */
     }
 </style>
 </head>
@@ -48,6 +95,10 @@
     </div>
     <div class="card-body">
         <form id="tyreForm">
+            <div class="form-group">
+                <label for="busNo">Bus Number:</label>
+                <input type="text" class="form-control" id="busNo" name="busNo" required>
+            </div>
             <div class="form-group">
                 <label for="tyreNo">Tyre Number:</label>
                 <input type="text" class="form-control" id="tyreNo" name="tyreNo" required>
@@ -117,7 +168,7 @@
 	
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/TyreManagement/service-worker.js')
+      navigator.serviceWorker.register('/service-worker.js')
         .then(registration => {
           console.log('Service Worker registered: ', registration);
         })
@@ -127,7 +178,6 @@
     });
   }
 </script>
-
 
 </body>
 </html>
