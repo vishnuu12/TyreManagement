@@ -1,49 +1,4 @@
-/*
-<?php
-// Database configuration
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Prepare and bind SQL statement
-    $stmt = $conn->prepare("INSERT INTO tyre_maintenance (bus_number, tyre_number, which_tyre, fit_in_date, fit_in_km, remove_in_date, remove_in_km, total_km) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $bus_number, $tyre_number, $which_tyre, $fit_in_date, $fit_in_km, $remove_in_date, $remove_in_km, $total_km);
-
-    // Set parameters and execute
-    $bus_number = $_POST['busNo'];
-    $tyre_number = $_POST['tyreNo'];
-    $which_tyre = $_POST['whichTyre'];
-    $fit_in_date = $_POST['fitInDate'];
-    $fit_in_km = $_POST['fitInKM'];
-    $remove_in_date = $_POST['removeInDate'];
-    $remove_in_km = $_POST['removeInKM'];
-    $total_km = $_POST['totalKM'];
-
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    // Close statement
-    $stmt->close();
-}
-
-// Close connection
-$conn->close();
-?>
-*/
 <!DOCTYPE html>
 <html lang="en">
 <head>
